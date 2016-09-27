@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import dev.nick.android.imageloader.ImageLoader;
+import dev.nick.android.imageloader.LoaderConfig;
 import dev.nick.android.injection.Injector;
 import dev.nick.logger.LoggerManager;
 
@@ -12,7 +13,7 @@ public class WMApp extends Application {
     public void onCreate() {
         super.onCreate();
         Injector.init(this);
-        ImageLoader.createShared(this);
-        LoggerManager.setDebugLevel(Log.VERBOSE);
+        ImageLoader.createShared(this, LoaderConfig.builder()
+                .debugLevel(Log.VERBOSE).build());
     }
 }

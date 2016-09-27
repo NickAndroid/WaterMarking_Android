@@ -1,21 +1,25 @@
 package dev.nick.watermarking;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
+import java.io.FileNotFoundException;
+
+import dev.nick.android.imageloader.ImageLoader;
+import dev.nick.android.imageloader.ui.DisplayOption;
+import dev.nick.android.imageloader.ui.MediaQuality;
 import dev.nick.android.injection.annotation.binding.BindView;
 
 public class MainActivity extends PickerActivity {
 
-    @BindView(R.id.recycler)
-    RecyclerView mRecyclerView;
     @BindView(R.id.fab_camera)
     FloatingActionButton mFabCam;
     @BindView(R.id.fab_gallery)
@@ -46,6 +50,17 @@ public class MainActivity extends PickerActivity {
                 startPickFromGalleryActivity();
             }
         });
+    }
+
+    @Override
+    protected void onPhotoSelected(Uri uri) {
+        super.onPhotoSelected(uri);
+        final ImageView view = (ImageView) findViewById(R.id.image);
+        try {
+            view.setImageBitmap(getBitmapFromUri(this, uri));
+        } catch (FileNotFoundException e) {
+
+        }
     }
 
     @Override

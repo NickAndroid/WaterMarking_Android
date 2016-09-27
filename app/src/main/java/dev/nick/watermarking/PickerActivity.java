@@ -323,7 +323,7 @@ public class PickerActivity extends AppCompatActivity {
     }
 
     protected void onPhotoSelected(Uri uri) {
-        Log.d(TAG, "onPhotoSelected, Uri:" + uri);
+        Log.d(TAG, "onPhotoSelected, Uri=" + uri.toString());
     }
 
     Uri getCurrentPhotoUri() {
