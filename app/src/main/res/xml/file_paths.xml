@@ -1,0 +1,4 @@
+<paths>
+    <!-- Offer access to files under Context.getCacheDir() -->
+    <cache-path name="my_cache" />
+</paths>
